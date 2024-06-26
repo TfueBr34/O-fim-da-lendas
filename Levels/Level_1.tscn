@@ -1,0 +1,132 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Portas/Portas.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/fase-2.png" type="Texture" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Puzzle/Espelho/Espelho2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Puzzle/Espelho/Espelho.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Puzzle/Emissor/Emissor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Puzzle/Receptor/Receptor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/Fogo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Portas/PortaSaida.png" type="Texture" id=9]
+[ext_resource path="res://World/ParedeBaixo.png" type="Texture" id=10]
+[ext_resource path="res://World/Cenas_dialogos/Area_dialogo_.tscn" type="PackedScene" id=11]
+[ext_resource path="res://World/Cenas_dialogos/Circulo_dialogo_.tscn" type="PackedScene" id=12]
+[ext_resource path="res://World/Livro.tscn" type="PackedScene" id=13]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( 113, 90 )
+b = Vector2( -100, 90 )
+
+[node name="Level_1" type="Node2D"]
+
+[node name="Mapa" type="Sprite" parent="."]
+position = Vector2( 160, 90 )
+z_index = -5
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Colisões" type="Node2D" parent="Mapa"]
+
+[node name="Buracos" type="StaticBody2D" parent="Mapa/Colisões"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Colisões/Buracos"]
+polygon = PoolVector2Array( 104, 89, 102, 60, 98, 44, 95, 34, 92, 26, 84, 22, 70, 19, 54, 19, 42, 13, 35, 4, 32, -6, 34, -16, 36, -26, 34, -33, 34, -44, 17, -44, 17, -40, 12, -40, 12, -63, -12, -63, -12, -40, -17, -40, -17, -44, -90, -44, -96, -37, -94, -25, -94, -15, -90, -3, -91, 19, -94, 38, -93, 57, -93, 69, -100, 89, -160, 90, -160, -90, 160, -90, 160, 90 )
+
+[node name="LinhaInferior" type="StaticBody2D" parent="Mapa/Colisões"]
+visible = false
+position = Vector2( 0, 14 )
+z_index = 14
+z_as_relative = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/Colisões/LinhaInferior"]
+position = Vector2( 0, -16 )
+shape = SubResource( 1 )
+
+[node name="ColisãoLuz" type="StaticBody2D" parent="Mapa/Colisões"]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Colisões/ColisãoLuz"]
+polygon = PoolVector2Array( -144, -56, -144, 81, 143, 81, 144, -56, -144, -56, -160, -56, -160, -90, 160, -90, 160, 90, -160, 90 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Mapa"]
+z_index = 8
+color = Color( 0.234375, 0.234375, 0.234375, 1 )
+
+[node name="Porta" parent="Mapa" instance=ExtResource( 1 )]
+position = Vector2( 0, -50 )
+next = "res://Levels/Level_2.tscn"
+
+[node name="Fogo1" parent="Mapa" instance=ExtResource( 8 )]
+position = Vector2( 60, -65 )
+frame = 0
+
+[node name="Fogo2" parent="Mapa/Fogo1" instance=ExtResource( 8 )]
+position = Vector2( 41, 1 )
+frame = 0
+
+[node name="Fogo3" parent="Mapa/Fogo1/Fogo2" instance=ExtResource( 8 )]
+position = Vector2( -162, -1 )
+frame = 0
+
+[node name="Fogo4" parent="Mapa/Fogo1/Fogo2/Fogo3" instance=ExtResource( 8 )]
+position = Vector2( -41, -1 )
+frame = 0
+
+[node name="ParedeBaixo" type="Sprite" parent="Mapa"]
+position = Vector2( 0, 82 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 10 )
+
+[node name="PortaSaida" type="Sprite" parent="Mapa/ParedeBaixo"]
+position = Vector2( 0, -11 )
+z_index = 4
+z_as_relative = false
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 160, 168 )
+
+[node name="Emissor1" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 90, 74 )
+
+[node name="Espelho1" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 230, 71 )
+
+[node name="Receptor1" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 90, 134 )
+
+[node name="Espelho2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 180, 119 )
+
+[node name="Registro_1" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 145, 120 )
+z_index = 35
+
+[node name="Dialogos" type="Node2D" parent="."]
+
+[node name="Area_dialogo_1_fase_2" parent="Dialogos" instance=ExtResource( 11 )]
+position = Vector2( 160, 83 )
+z_index = 6
+
+[node name="Area_dialogo_2_fase_2" parent="Dialogos" instance=ExtResource( 12 )]
+
+[node name="Area_dialogo_3_fase_2" parent="Dialogos" instance=ExtResource( 12 )]
+position = Vector2( 90, -15 )
+
+[connection signal="Ativar" from="YSort/Emissor1" to="Mapa/Porta" method="_on_Emissor1_Ativar"]
+[connection signal="body_entered" from="YSort/Registro_1" to="YSort/Registro_1" method="_on_Registro_1_body_entered"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_1_fase_2" to="YSort/Player" method="_on_Area_dialogo_1_fase_2_body_entered"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_2_fase_2" to="YSort/Player" method="_on_Area_dialogo_2_fase_2_body_entered"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_3_fase_2" to="YSort/Player" method="_on_Area_dialogo_3_fase_2_body_entered"]

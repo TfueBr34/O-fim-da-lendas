@@ -1,0 +1,293 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://World/fase-6.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Puzzle/Espelho/Espelho.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Puzzle/Espelho/Espelho2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Puzzle/Receptor/ReceptorD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Puzzle/Botão/Botão_pesado.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Puzzle/box/Bloco_pesado.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Portas/PortaSaida.png" type="Texture" id=8]
+[ext_resource path="res://World/ParedeBaixo.png" type="Texture" id=9]
+[ext_resource path="res://Puzzle/Receptor/ReceptorU.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Portas/PortaLateral.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Puzzle/Emissor/EmissorU.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Portas/Portas2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://World/Cenas_dialogos/Area_dialogo_.tscn" type="PackedScene" id=14]
+[ext_resource path="res://World/Livro.tscn" type="PackedScene" id=15]
+[ext_resource path="res://World/Fogo.tscn" type="PackedScene" id=16]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( 343, 53 )
+b = Vector2( 55, 53 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.72812, 0.0999996 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 90 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 144, 16.5 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8.5, 34.25 )
+
+[node name="Level_5" type="Node2D"]
+
+[node name="Colisões" type="Node2D" parent="."]
+
+[node name="ParedeBaixo" type="StaticBody2D" parent="Colisões"]
+visible = false
+position = Vector2( 0, 14 )
+z_index = 14
+
+[node name="ParedeBaixo" type="CollisionShape2D" parent="Colisões/ParedeBaixo"]
+position = Vector2( -39, 111 )
+z_index = 18
+shape = SubResource( 1 )
+
+[node name="Buraco" type="StaticBody2D" parent="Colisões"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisões/Buraco"]
+polygon = PoolVector2Array( 257, 77, 212, 77, 212, 70, 171, 70, 171, 86, 149, 86, 149, 70, 108, 70, 108, 77, 63, 77, 63, 97, 108, 97, 108, 151, 149, 151, 149, 133, 171, 133, 171, 151, 212, 151, 212, 97, 257, 97 )
+
+[node name="Paredes" type="StaticBody2D" parent="Colisões"]
+visible = false
+z_index = 10
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisões/Paredes"]
+z_index = 8
+polygon = PoolVector2Array( 63, 180, 63, 119, 46, 119, 46, 164, 16, 164, 16, 46, 46, 46, 46, 85, 63, 85, 63, 46, 143, 46, 148, 46, 148, 46, 148, 27, 172, 27, 172, 46, 257, 47, 257, 85, 274, 85, 274, 46, 304, 46, 304, 164, 274, 164, 274, 119, 257, 119, 257, 164, 257, 180, 320, 180, 320, 0, 1, 0, 0, 180 )
+
+[node name="SaciCol" type="StaticBody2D" parent="Colisões" groups=["Saci"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/SaciCol"]
+position = Vector2( 89.2813, 86 )
+scale = Vector2( 10, 10 )
+z_index = 10
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Colisões/SaciCol"]
+position = Vector2( 230.438, 87 )
+scale = Vector2( 10, 10 )
+z_index = 10
+shape = SubResource( 2 )
+
+[node name="Colisão de luz" type="StaticBody2D" parent="Colisões"]
+visible = false
+collision_layer = 5
+collision_mask = 5
+
+[node name="Colisão de luz1" type="CollisionShape2D" parent="Colisões/Colisão de luz"]
+position = Vector2( 312, 90 )
+z_index = 3
+shape = SubResource( 3 )
+
+[node name="Colisão de luz2" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz2"]
+position = Vector2( 8, 90 )
+z_index = 3
+shape = SubResource( 3 )
+
+[node name="Colisão de luz3" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz3"]
+position = Vector2( 160, 16.5 )
+z_index = 3
+shape = SubResource( 4 )
+
+[node name="Colisão de luz4" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz4"]
+position = Vector2( 54.5, 50.5 )
+z_index = 3
+shape = SubResource( 5 )
+
+[node name="Colisão de luz5" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz5"]
+position = Vector2( 54.25, 163 )
+z_index = 3
+shape = SubResource( 5 )
+
+[node name="Colisão de luz6" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz6"]
+position = Vector2( 265.625, 50.75 )
+z_index = 3
+shape = SubResource( 5 )
+
+[node name="Colisão de luz7" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz7"]
+position = Vector2( 265.5, 163 )
+z_index = 3
+shape = SubResource( 5 )
+
+[node name="Mapa" type="Sprite" parent="."]
+position = Vector2( 160, 90 )
+z_index = -3
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Mapa"]
+position = Vector2( -160, -90 )
+z_index = 8
+color = Color( 0.352941, 0.352941, 0.352941, 1 )
+
+[node name="ParedeBaixo" type="Sprite" parent="Mapa"]
+position = Vector2( 0, 82 )
+z_index = 8
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PortaSaida" type="Sprite" parent="Mapa/ParedeBaixo"]
+position = Vector2( 0, -11 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 8 )
+
+[node name="ColorRect" type="ColorRect" parent="Mapa/ParedeBaixo"]
+anchor_left = 0.803
+anchor_top = -3.063
+anchor_right = 0.803
+anchor_bottom = -3.063
+margin_left = -159.96
+margin_top = -7.992
+margin_right = -142.96
+margin_bottom = 41.008
+rect_pivot_offset = Vector2( -296, -13 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Mapa/ParedeBaixo"]
+anchor_left = 0.803
+anchor_top = -3.063
+anchor_right = 0.803
+anchor_bottom = -3.063
+margin_left = -370.96
+margin_top = -7.992
+margin_right = -353.96
+margin_bottom = 41.008
+rect_pivot_offset = Vector2( -296, -13 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParedeLateralR" parent="Mapa" instance=ExtResource( 11 )]
+position = Vector2( 105.5, -2.5 )
+
+[node name="ParedeLateralL" parent="Mapa" instance=ExtResource( 11 )]
+position = Vector2( -105.5, -2.5 )
+
+[node name="Portas2" parent="Mapa" instance=ExtResource( 13 )]
+position = Vector2( 0, -50 )
+next = "res://Levels/Level_6.tscn"
+
+[node name="Fogo" parent="Mapa" instance=ExtResource( 16 )]
+position = Vector2( 78, -64 )
+
+[node name="Fogo" parent="Mapa/Fogo" instance=ExtResource( 16 )]
+position = Vector2( -156, 1 )
+
+[node name="Fogo" parent="Mapa/Fogo/Fogo" instance=ExtResource( 16 )]
+position = Vector2( 114, -1 )
+
+[node name="Fogo" parent="Mapa/Fogo/Fogo/Fogo" instance=ExtResource( 16 )]
+position = Vector2( -72, 1 )
+
+[node name="YSort" type="YSort" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 160, 169 )
+
+[node name="Espelho1" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 160, 104 )
+
+[node name="Espelho2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 236, 115 )
+
+[node name="Espelho3" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 82, 113 )
+
+[node name="Botão_pesado" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 78, 162 )
+z_index = -2
+
+[node name="Botão_pesado2" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 242, 61 )
+z_index = -2
+
+[node name="Botão_pesado3" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 94, 56 )
+
+[node name="Botão_pesado4" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 236, 160 )
+
+[node name="Botão_pesado5" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 31, 95 )
+
+[node name="Botão_pesado6" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 289, 94 )
+
+[node name="ReceptorU1" parent="YSort" instance=ExtResource( 10 )]
+position = Vector2( 160, 138 )
+
+[node name="ReceptorU2" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 160, 71 )
+
+[node name="EmissorU1" parent="YSort" instance=ExtResource( 12 )]
+position = Vector2( 31, 157 )
+
+[node name="EmissorU2" parent="YSort" instance=ExtResource( 12 )]
+position = Vector2( 289, 157 )
+
+[node name="Registro_5" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 97, 137 )
+z_index = 15
+
+[node name="Dialogos" type="Node2D" parent="."]
+
+[node name="Area_dialogo_1_fase_6" parent="Dialogos" instance=ExtResource( 14 )]
+visible = true
+position = Vector2( 162, 85 )
+scale = Vector2( 0.5, 1 )
+
+[node name="Aba_poder" type="Node2D" parent="."]
+
+[connection signal="abrir" from="YSort/Botão_pesado" to="Mapa/ParedeLateralL" method="_on_Boto_pesado_abrir"]
+[connection signal="abrir" from="YSort/Botão_pesado2" to="Mapa/ParedeLateralR" method="_on_Boto_pesado_abrir"]
+[connection signal="Desativar" from="YSort/ReceptorU1" to="Mapa/Portas2" method="_on_Receptor1_Desativar"]
+[connection signal="Desativar" from="YSort/ReceptorU2" to="Mapa/Portas2" method="_on_Receptor1_Desativar"]
+[connection signal="Ativar" from="YSort/EmissorU1" to="Mapa/Portas2" method="_on_Emissor1_Ativar"]
+[connection signal="Ativar" from="YSort/EmissorU2" to="Mapa/Portas2" method="_on_Emissor1_Ativar"]
+[connection signal="body_entered" from="YSort/Registro_5" to="YSort/Registro_5" method="_on_Registro_5_body_entered"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_1_fase_6" to="YSort/Player" method="_on_Area_dialogo_1_fase_6_body_entered"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://História/Historia_mundo.gd" type="Script" id=1]
+
+[node name="Historia_mundo" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texto" type="RichTextLabel" parent="."]
+margin_left = 5.0
+margin_top = 4.0
+margin_right = 627.0
+margin_bottom = 348.0
+rect_scale = Vector2( 0.5, 0.5 )
+tab_size = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mensagem" type="RichTextLabel" parent="."]
+margin_left = 124.0
+margin_top = 138.0
+margin_right = 229.0
+margin_bottom = 178.0
+rect_scale = Vector2( 0.75, 0.75 )
+text = "Aperte Enter para prosseguir"
+__meta__ = {
+"_edit_use_anchors_": false
+}

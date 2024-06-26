@@ -1,0 +1,292 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://World/fase-8.png" type="Texture" id=1]
+[ext_resource path="res://Portas/PortaSaida.png" type="Texture" id=2]
+[ext_resource path="res://World/ParedeBaixo.png" type="Texture" id=3]
+[ext_resource path="res://Puzzle/Emissor/EmissorU.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Puzzle/Espelho/Espelho.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Puzzle/Botão/Botão_pesado.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Puzzle/Botão/TimedButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Puzzle/Receptor/ReceptorL.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Puzzle/box/Bloco_pesado.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Puzzle/Espelho/Espelho2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Portas/PortaLateral.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Portas/Porta4.tscn" type="PackedScene" id=13]
+[ext_resource path="res://World/Cenas_dialogos/Area_dialogo_.tscn" type="PackedScene" id=14]
+[ext_resource path="res://World/Cenas_dialogos/Circulo_dialogo_.tscn" type="PackedScene" id=15]
+[ext_resource path="res://World/Fogo.tscn" type="PackedScene" id=16]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( 343, 53 )
+b = Vector2( 55, 53 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8.5, 31.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.3, 0.0999999 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 3.25, 0.0999994 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8, 90 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 144, 16.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 8.25, 27.125 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 8.5, 17 )
+
+[node name="Level_7" type="Node2D"]
+
+[node name="Colisões" type="Node2D" parent="."]
+
+[node name="ParedeBaixo" type="StaticBody2D" parent="Colisões"]
+visible = false
+position = Vector2( 0, 16 )
+z_index = 14
+
+[node name="ParedeBaixo" type="CollisionShape2D" parent="Colisões/ParedeBaixo"]
+position = Vector2( -39, 111 )
+z_index = 18
+shape = SubResource( 1 )
+
+[node name="Parede" type="StaticBody2D" parent="Colisões"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisões/Parede"]
+polygon = PoolVector2Array( 304, 180, 304, 46, 177, 46, 177, 50, 172, 50, 172, 27, 148, 27, 148, 50, 143, 50, 143, 46, 16, 46, 16, 123, 33, 123, 33, 142, 16, 142, 16, 180, 0, 180, 0, 0, 320, 0, 320, 180 )
+
+[node name="Parede2" type="StaticBody2D" parent="Colisões/Parede"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Parede/Parede2"]
+position = Vector2( 64.5, 110.5 )
+shape = SubResource( 3 )
+
+[node name="Buraco" type="StaticBody2D" parent="Colisões"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisões/Buraco"]
+polygon = PoolVector2Array( 304, 108, 118.236, 108, 118, 87, 98, 87, 98.1786, 108, 16, 108, 16, 123, 304, 123 )
+
+[node name="SaciCol" type="StaticBody2D" parent="Colisões" groups=["Saci"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/SaciCol"]
+position = Vector2( 211, 115 )
+scale = Vector2( 10, 10 )
+z_index = 10
+shape = SubResource( 2 )
+
+[node name="SaciCol2" type="StaticBody2D" parent="Colisões" groups=["Saci"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/SaciCol2"]
+position = Vector2( 65.5, 115 )
+scale = Vector2( 10, 10 )
+z_index = 10
+shape = SubResource( 4 )
+
+[node name="Colisão de luz" type="StaticBody2D" parent="Colisões"]
+visible = false
+collision_layer = 5
+collision_mask = 5
+
+[node name="Colisão de luz1" type="CollisionShape2D" parent="Colisões/Colisão de luz"]
+position = Vector2( 312, 90 )
+z_index = 3
+shape = SubResource( 5 )
+
+[node name="Colisão de luz2" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz2"]
+position = Vector2( 8, 90 )
+z_index = 3
+shape = SubResource( 5 )
+
+[node name="Colisão de luz3" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz3"]
+position = Vector2( 160, 16.5 )
+z_index = 3
+shape = SubResource( 6 )
+
+[node name="Colisão de luz4" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz4"]
+position = Vector2( 64.25, 115.125 )
+z_index = 3
+shape = SubResource( 7 )
+
+[node name="Colisão de luz5" type="StaticBody2D" parent="Colisões/Colisão de luz"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/Colisão de luz/Colisão de luz5"]
+position = Vector2( 24.5, 125 )
+z_index = 3
+shape = SubResource( 8 )
+
+[node name="Mapa" type="Sprite" parent="."]
+position = Vector2( 160, 90 )
+z_index = -4
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Mapa"]
+position = Vector2( -160, -90 )
+z_index = 8
+color = Color( 0.352941, 0.352941, 0.352941, 1 )
+
+[node name="ParedeBaixo" type="Sprite" parent="Mapa"]
+position = Vector2( 0, 82 )
+z_index = 8
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PortaSaida" type="Sprite" parent="Mapa/ParedeBaixo"]
+position = Vector2( 0, -11 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="Mapa/ParedeBaixo/PortaSaida"]
+margin_left = -144.0
+margin_top = -62.0
+margin_right = -127.0
+margin_bottom = -49.0
+rect_pivot_offset = Vector2( -13, 23 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Mapa/ParedeBaixo/PortaSaida"]
+margin_left = -104.0
+margin_top = -85.0
+margin_right = -87.0
+margin_bottom = -49.0
+rect_pivot_offset = Vector2( -13, 23 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortaLateral" parent="Mapa" instance=ExtResource( 12 )]
+position = Vector2( -95.5, -41.5 )
+
+[node name="Porta4" parent="Mapa" instance=ExtResource( 13 )]
+position = Vector2( 0, -50 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 160, 167 )
+
+[node name="TimedButton" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 299, 157 )
+time = 7
+
+[node name="EmissorU" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 108, 162 )
+
+[node name="EmissorU2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 211, 162 )
+
+[node name="Receptor1" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( 291, 139 )
+
+[node name="Receptor2" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( 290, 64 )
+
+[node name="Botão_pesado" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 243, 143 )
+
+[node name="Botão_pesado4" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 32, 62 )
+
+[node name="Bloco_pesado" parent="YSort" instance=ExtResource( 10 )]
+position = Vector2( 256, 65 )
+
+[node name="Bloco_pesado2" parent="YSort" instance=ExtResource( 10 )]
+position = Vector2( 44, 139 )
+
+[node name="Espelho1" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 243, 137 )
+
+[node name="Espelho2" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 212, 62 )
+
+[node name="Espelho3" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 46, 81 )
+
+[node name="Espelho4" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 108, 63 )
+
+[node name="Fogo1" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 125.5, 27 )
+frame = 0
+
+[node name="Fogo2" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 90.5, 27 )
+flip_h = true
+
+[node name="Fogo3" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 36.5, 27 )
+frame = 1
+
+[node name="Fogo4" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 230.5, 27 )
+frame = 1
+
+[node name="Fogo5" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 284, 27 )
+frame = 0
+
+[node name="Fogo6" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 195, 27 )
+frame = 0
+flip_h = true
+
+[node name="Dialogos" type="Node2D" parent="."]
+
+[node name="Area_dialogo_1_fase_8" parent="Dialogos" instance=ExtResource( 14 )]
+visible = true
+position = Vector2( 162, 81 )
+
+[node name="Area_dialogo_2_fase_8" parent="Dialogos" instance=ExtResource( 15 )]
+visible = true
+position = Vector2( -11, 15 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="Aba_poder" type="Node2D" parent="."]
+
+[connection signal="Ativar" from="YSort/TimedButton" to="Mapa/PortaLateral" method="_on_TimedButton_Ativar"]
+[connection signal="Desativar" from="YSort/TimedButton" to="Mapa/PortaLateral" method="_on_TimedButton_Desativar"]
+[connection signal="Ativar" from="YSort/EmissorU" to="Mapa/Porta4" method="_on_Emissor1_Ativar"]
+[connection signal="Ativar" from="YSort/EmissorU2" to="Mapa/Porta4" method="_on_Emissor1_Ativar"]
+[connection signal="Desativar" from="YSort/Receptor1" to="Mapa/Porta4" method="_on_Receptor1_Desativar"]
+[connection signal="Desativar" from="YSort/Receptor2" to="Mapa/Porta4" method="_on_Receptor1_Desativar"]
+[connection signal="abrir" from="YSort/Botão_pesado" to="Mapa/Porta4" method="_on_Boto_pesado_abrir"]
+[connection signal="abrir" from="YSort/Botão_pesado4" to="Mapa/Porta4" method="_on_Boto_pesado_abrir"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_1_fase_8" to="YSort/Player" method="_on_Area_dialogo_1_fase_8_body_entered"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_2_fase_8" to="YSort/Player" method="_on_Area_dialogo_2_fase_8_body_entered"]

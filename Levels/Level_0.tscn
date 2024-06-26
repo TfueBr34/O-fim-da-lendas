@@ -1,0 +1,137 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Portas/Porta.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Puzzle/Botão/Botao.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/fase-1.png" type="Texture" id=4]
+[ext_resource path="res://World/Estatua2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/Estatua3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://World/Estatua4.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/Estatua5.tscn" type="PackedScene" id=8]
+[ext_resource path="res://World/Estatua1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://World/Estatua6.tscn" type="PackedScene" id=10]
+[ext_resource path="res://World/fase1_arvore_L.png" type="Texture" id=11]
+[ext_resource path="res://World/fase1_arvore_R.png" type="Texture" id=12]
+[ext_resource path="res://World/Fogo.tscn" type="PackedScene" id=13]
+[ext_resource path="res://World/Cenas_dialogos/Area_dialogo_.tscn" type="PackedScene" id=14]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( 113, 90 )
+b = Vector2( -100, 90 )
+
+[node name="Level_0" type="Node2D"]
+position = Vector2( 160, 90 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Colisões" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Paredes" type="StaticBody2D" parent="Colisões"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisões/Paredes"]
+polygon = PoolVector2Array( 160, 90, 113, 90, 108, 71, 114, 59, 108, 39, 114, 16, 108, -5, 117, -21, 113, -42, 32, -42, 32, -36, 20, -36, 20, -33, 16, -33, 16, -64, -16, -64, -16, -33, -20, -33, -20, -36, -32, -36, -32, -42, -116, -42, -109, -27, -110, -15, -103, 5, -102, 25, -104, 45, -110, 60, -104, 72, -100, 81, -100, 90, -160, 90, -160, -90, 160, -90 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Colisões"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="Mapa" type="Sprite" parent="."]
+z_index = -5
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Porta" parent="Mapa" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+next = "res://Levels/Level_1.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Mapa"]
+z_index = 8
+color = Color( 0.423529, 0.423529, 0.423529, 1 )
+
+[node name="fase1_arvore_R" type="Sprite" parent="Mapa"]
+position = Vector2( 126, 12.5 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 12 )
+
+[node name="fase1_arvore_L" type="Sprite" parent="Mapa"]
+position = Vector2( -125, 12.5 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 11 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 0, 87 )
+
+[node name="Botao" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 0, -47 )
+
+[node name="Estatua1" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( -45, -9 )
+
+[node name="Fogo5" parent="YSort/Estatua1" instance=ExtResource( 13 )]
+position = Vector2( 10, -24 )
+frame = 1
+flip_h = true
+
+[node name="Estatua2" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( -45, 30 )
+
+[node name="Fogo3" parent="YSort/Estatua2" instance=ExtResource( 13 )]
+position = Vector2( 10, -24 )
+frame = 1
+flip_h = true
+
+[node name="Estatua3" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( -45, 69 )
+
+[node name="Fogo2" parent="YSort/Estatua3" instance=ExtResource( 13 )]
+position = Vector2( 10, -24 )
+frame = 1
+flip_h = true
+
+[node name="Estatua4" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 45, -9 )
+
+[node name="Fogo6" parent="YSort/Estatua4" instance=ExtResource( 13 )]
+position = Vector2( -10, -24 )
+frame = 1
+
+[node name="Estatua5" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 45, 30 )
+
+[node name="Fogo4" parent="YSort/Estatua5" instance=ExtResource( 13 )]
+position = Vector2( -10, -24 )
+frame = 1
+
+[node name="Estatua6" parent="YSort" instance=ExtResource( 10 )]
+position = Vector2( 45, 69 )
+
+[node name="Fogo1" parent="YSort/Estatua6" instance=ExtResource( 13 )]
+position = Vector2( -10, -24 )
+frame = 1
+
+[node name="Dialogos" type="Node2D" parent="."]
+
+[node name="Area_dialogo_1_fase_1" parent="Dialogos" instance=ExtResource( 14 )]
+position = Vector2( 0, 1 )
+
+[node name="Area_dialogo_2_fase_1" parent="Dialogos" instance=ExtResource( 14 )]
+position = Vector2( 0, -106 )
+
+[connection signal="Ativo" from="YSort/Botao" to="Mapa/Porta" method="_on_Botao_Ativo"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_1_fase_1" to="YSort/Player" method="_on_Area_dialogo_1_fase_1_body_entered"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_2_fase_1" to="YSort/Player" method="_on_Area_dialogo_2_fase_1_body_entered"]

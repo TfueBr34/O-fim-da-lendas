@@ -1,0 +1,203 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://World/fase-7.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Portas/PortaSaida.png" type="Texture" id=3]
+[ext_resource path="res://World/ParedeBaixo.png" type="Texture" id=4]
+[ext_resource path="res://Puzzle/Espelho/Espelho.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Puzzle/Espelho/Espelho2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Puzzle/box/Bloco_pesado.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Puzzle/Receptor/Receptor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Puzzle/Oferendas/OferendaMula.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Puzzle/Altares/Mula.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Puzzle/Botão/TimedButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Portas/PortaTimed.tscn" type="PackedScene" id=12]
+[ext_resource path="res://World/Cenas_dialogos/Circulo_dialogo_.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Puzzle/Lights Out/Lights_out.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Puzzle/Lights Out/Puzzle_Bau_3.gd" type="Script" id=15]
+[ext_resource path="res://World/Livro.tscn" type="PackedScene" id=16]
+[ext_resource path="res://World/Fogo.tscn" type="PackedScene" id=17]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( 343, 53 )
+b = Vector2( 55, 53 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 0.0976554, 1.34375 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 9, 0.75 )
+
+[node name="Level_6" type="Node2D"]
+
+[node name="Colisões" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ParedeBaixo" type="StaticBody2D" parent="Colisões"]
+visible = false
+position = Vector2( 0, 14 )
+z_index = 14
+
+[node name="ParedeBaixo" type="CollisionShape2D" parent="Colisões/ParedeBaixo"]
+position = Vector2( -39, 111 )
+z_index = 18
+shape = SubResource( 1 )
+
+[node name="Parede" type="StaticBody2D" parent="Colisões"]
+visible = false
+z_index = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisões/Parede"]
+polygon = PoolVector2Array( 16, 180, 16, 46, 143, 46, 143, 50, 148, 50, 148, 27, 172, 27, 172, 50, 177, 50, 177, 46, 304, 46, 305, 180, 320, 180, 320, 0, 0, 0, 0, 180 )
+
+[node name="Buraco" type="StaticBody2D" parent="Colisões"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisões/Buraco"]
+z_index = 2
+polygon = PoolVector2Array( 196, 164, 196, 152, 82, 152, 82, 74, 16, 74, 16, 45, 137, 46, 137, 61, 137, 90, 97, 90, 97, 121, 152, 121, 152, 90, 137, 90, 137, 61, 267, 61, 267, 81, 285, 81, 285, 46, 304, 46, 304, 92, 170, 92, 170, 118, 304, 118, 304, 164 )
+
+[node name="SaciCol" type="StaticBody2D" parent="Colisões" groups=["Saci"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/SaciCol"]
+position = Vector2( 89, 105 )
+scale = Vector2( 10, 10 )
+z_index = 10
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Colisões/SaciCol"]
+position = Vector2( 160.023, 104.563 )
+scale = Vector2( 10, 10 )
+z_index = 10
+shape = SubResource( 2 )
+
+[node name="SaciCol2" type="StaticBody2D" parent="Colisões" groups=["Saci"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisões/SaciCol2"]
+position = Vector2( 276, 86.75 )
+z_index = 10
+shape = SubResource( 3 )
+
+[node name="Mapa" type="Sprite" parent="."]
+position = Vector2( 160, 90 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Mapa"]
+position = Vector2( -160, -90 )
+z_index = 8
+color = Color( 0.352941, 0.352941, 0.352941, 1 )
+
+[node name="ParedeBaixo" type="Sprite" parent="Mapa"]
+position = Vector2( 0, 82 )
+z_index = 8
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PortaSaida" type="Sprite" parent="Mapa/ParedeBaixo"]
+position = Vector2( 0, -11 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 3 )
+
+[node name="PortaTimed" parent="Mapa" instance=ExtResource( 12 )]
+position = Vector2( 0, -50 )
+next = "res://Levels/Level_7.tscn"
+
+[node name="YSort" type="YSort" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 160, 168 )
+
+[node name="Botão_pesado" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 49, 107 )
+
+[node name="Botão_pesado2" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 85, 163 )
+
+[node name="Receptor1" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 125, 100 )
+
+[node name="Botão_pesado3" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 193, 103 )
+
+[node name="Espelho1" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 69, 129 )
+
+[node name="Espelho2" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 29, 86 )
+
+[node name="Mula" parent="YSort" instance=ExtResource( 10 )]
+position = Vector2( 32, 144 )
+
+[node name="OferendaMula" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( 110, 162 )
+
+[node name="TimedButton" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 185, 155 )
+time = 9
+
+[node name="Registro_Mula" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 32, 128 )
+z_index = 15
+
+[node name="Fogo1" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( 104.5, 27 )
+
+[node name="Fogo2" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( 55.5, 27 )
+frame = 1
+
+[node name="Fogo3" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( 216.5, 27 )
+frame = 1
+flip_h = true
+
+[node name="Fogo4" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( 265.5, 27 )
+frame = 0
+flip_h = true
+
+[node name="Puzzle" type="Node2D" parent="."]
+visible = false
+z_index = 50
+script = ExtResource( 15 )
+
+[node name="Lights_Out" parent="Puzzle" instance=ExtResource( 14 )]
+
+[node name="Dialogos" type="Node2D" parent="."]
+
+[node name="Area_dialogo_2_fase_7" parent="Dialogos" instance=ExtResource( 13 )]
+visible = true
+position = Vector2( -59, 10 )
+
+[node name="Area_dialogo_1_fase_7" parent="Dialogos" instance=ExtResource( 13 )]
+visible = true
+position = Vector2( 140, 86 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Aba_poder" type="Node2D" parent="."]
+
+[connection signal="Mula" from="YSort/Mula" to="YSort/Player" method="_on_Mula_Mula"]
+[connection signal="mula" from="YSort/OferendaMula" to="YSort/Mula" method="_on_Oferenda_mula"]
+[connection signal="Ativar" from="YSort/TimedButton" to="Mapa/PortaTimed" method="_on_TimedButton_Ativar"]
+[connection signal="Desativar" from="YSort/TimedButton" to="Mapa/PortaTimed" method="_on_TimedButton_Desativar"]
+[connection signal="body_entered" from="YSort/Registro_Mula" to="YSort/Registro_Mula" method="_on_Registro_Mula_body_entered"]
+[connection signal="destrancado" from="Puzzle/Lights_Out" to="Puzzle" method="_on_Lights_Out_destrancado"]
+[connection signal="body_exited" from="Dialogos/Area_dialogo_2_fase_7" to="YSort/Player" method="_on_Area_dialogo_2_fase_7_body_exited"]
+[connection signal="body_entered" from="Dialogos/Area_dialogo_1_fase_7" to="YSort/Player" method="_on_Area_dialogo_1_fase_7_body_entered"]
