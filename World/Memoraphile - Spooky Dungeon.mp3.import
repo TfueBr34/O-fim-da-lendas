@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Memoraphile - Spooky Dungeon.mp3-1ce8a88b97562b02402f89816f82bbca.mp3str"
+
+[deps]
+
+source_file="res://World/Memoraphile - Spooky Dungeon.mp3"
+dest_files=[ "res://.import/Memoraphile - Spooky Dungeon.mp3-1ce8a88b97562b02402f89816f82bbca.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

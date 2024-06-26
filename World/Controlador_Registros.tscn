@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://World/Controlador_Registros.gd" type="Script" id=1]
+
+[node name="Controlador_Registros" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Págs_lendas" type="ColorRect" parent="Background"]
+visible = false
+margin_left = 21.0
+margin_top = 9.0
+margin_right = 297.0
+margin_bottom = 171.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texto" type="RichTextLabel" parent="Background/Págs_lendas"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 675.0
+margin_bottom = 383.0
+rect_scale = Vector2( 0.4, 0.4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+tab_size = 0
+fit_content_height = true
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Página" type="ColorRect" parent="Background"]
+margin_left = 101.0
+margin_top = 13.0
+margin_right = 208.0
+margin_bottom = 163.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texto" type="RichTextLabel" parent="Background/Página"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 255.0
+margin_bottom = 363.0
+rect_scale = Vector2( 0.4, 0.4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+tab_size = 0
+fit_content_height = true
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mensagem" type="RichTextLabel" parent="Background"]
+visible = false
+margin_left = 232.0
+margin_top = 136.0
+margin_right = 332.0
+margin_bottom = 182.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Aperte Enter para prosseguir"
+__meta__ = {
+"_edit_use_anchors_": false
+}
