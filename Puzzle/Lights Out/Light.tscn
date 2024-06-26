@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Puzzle/Lights Out/Button1.gd" type="Script" id=1]
+[ext_resource path="res://Puzzle/Lights Out/desligado.png" type="Texture" id=2]
+
+[node name="Button1" type="Button"]
+margin_left = 90.0
+margin_top = 45.0
+margin_right = 139.0
+margin_bottom = 88.0
+icon = ExtResource( 2 )
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

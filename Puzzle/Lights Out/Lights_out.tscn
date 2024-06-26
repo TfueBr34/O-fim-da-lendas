@@ -1,0 +1,209 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Puzzle/Lights Out/Light.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Puzzle/Lights Out/ligado.png" type="Texture" id=2]
+[ext_resource path="res://Puzzle/Lights Out/Lights_out.gd" type="Script" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends ColorRect
+
+var img_desligado=ResourceLoader.load(\"res://Puzzle/Lights Out/desligado.png\")
+var destrancado
+
+signal destrancado
+
+func _ready():
+	destrancado=true
+
+func _process(_delta):
+	for botao in get_children():
+		if(botao.icon==img_desligado):
+			destrancado=false
+	if(destrancado):
+		emit_signal(\"destrancado\")
+"
+
+[node name="Puzzle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blur" type="ColorRect" parent="."]
+margin_right = 321.0
+margin_bottom = 179.0
+color = Color( 0, 0, 0, 0.941176 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Painel" type="ColorRect" parent="."]
+margin_left = 85.0
+margin_top = 24.0
+margin_right = 274.0
+margin_bottom = 193.0
+rect_scale = Vector2( 0.75, 0.75 )
+color = Color( 0.113725, 0.113725, 0.113725, 1 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 9.0
+margin_top = 4.0
+margin_right = 58.0
+margin_bottom = 47.0
+
+[node name="Button2" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 99.0
+margin_bottom = 47.0
+icon = ExtResource( 2 )
+
+[node name="Button3" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 91.0
+margin_top = 4.0
+margin_right = 140.0
+margin_bottom = 47.0
+icon = ExtResource( 2 )
+
+[node name="Button4" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 132.0
+margin_top = 4.0
+margin_right = 181.0
+margin_bottom = 47.0
+
+[node name="Button5" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 9.0
+margin_top = 43.0
+margin_right = 58.0
+margin_bottom = 86.0
+icon = ExtResource( 2 )
+
+[node name="Button6" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 50.0
+margin_top = 43.0
+margin_right = 99.0
+margin_bottom = 86.0
+icon = ExtResource( 2 )
+
+[node name="Button7" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 91.0
+margin_top = 43.0
+margin_right = 140.0
+margin_bottom = 86.0
+icon = ExtResource( 2 )
+
+[node name="Button8" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 132.0
+margin_top = 43.0
+margin_right = 181.0
+margin_bottom = 86.0
+icon = ExtResource( 2 )
+
+[node name="Button9" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 9.0
+margin_top = 82.0
+margin_right = 58.0
+margin_bottom = 125.0
+icon = ExtResource( 2 )
+
+[node name="Button10" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 50.0
+margin_top = 82.0
+margin_right = 99.0
+margin_bottom = 125.0
+icon = ExtResource( 2 )
+
+[node name="Button11" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 91.0
+margin_top = 82.0
+margin_right = 140.0
+margin_bottom = 125.0
+icon = ExtResource( 2 )
+
+[node name="Button12" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 132.0
+margin_top = 82.0
+margin_right = 181.0
+margin_bottom = 125.0
+icon = ExtResource( 2 )
+
+[node name="Button13" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 9.0
+margin_top = 121.0
+margin_right = 58.0
+margin_bottom = 164.0
+
+[node name="Button14" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 50.0
+margin_top = 121.0
+margin_right = 99.0
+margin_bottom = 164.0
+icon = ExtResource( 2 )
+
+[node name="Button15" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 91.0
+margin_top = 121.0
+margin_right = 140.0
+margin_bottom = 164.0
+icon = ExtResource( 2 )
+
+[node name="Button16" parent="Painel" instance=ExtResource( 1 )]
+margin_left = 132.0
+margin_top = 121.0
+margin_right = 181.0
+margin_bottom = 164.0
+
+[connection signal="apertado" from="Painel/Button1" to="Painel/Button2" method="_on_Button1_apertado"]
+[connection signal="apertado" from="Painel/Button1" to="Painel/Button5" method="_on_Button1_apertado"]
+[connection signal="apertado" from="Painel/Button2" to="Painel/Button1" method="_on_Button2_apertado"]
+[connection signal="apertado" from="Painel/Button2" to="Painel/Button3" method="_on_Button2_apertado"]
+[connection signal="apertado" from="Painel/Button2" to="Painel/Button6" method="_on_Button2_apertado"]
+[connection signal="apertado" from="Painel/Button3" to="Painel/Button2" method="_on_Button3_apertado"]
+[connection signal="apertado" from="Painel/Button3" to="Painel/Button4" method="_on_Button3_apertado"]
+[connection signal="apertado" from="Painel/Button3" to="Painel/Button7" method="_on_Button3_apertado"]
+[connection signal="apertado" from="Painel/Button4" to="Painel/Button3" method="_on_Button4_apertado"]
+[connection signal="apertado" from="Painel/Button4" to="Painel/Button8" method="_on_Button4_apertado"]
+[connection signal="apertado" from="Painel/Button5" to="Painel/Button1" method="_on_Button5_apertado"]
+[connection signal="apertado" from="Painel/Button5" to="Painel/Button6" method="_on_Button5_apertado"]
+[connection signal="apertado" from="Painel/Button5" to="Painel/Button9" method="_on_Button5_apertado"]
+[connection signal="apertado" from="Painel/Button6" to="Painel/Button2" method="_on_Button6_apertado"]
+[connection signal="apertado" from="Painel/Button6" to="Painel/Button5" method="_on_Button6_apertado"]
+[connection signal="apertado" from="Painel/Button6" to="Painel/Button7" method="_on_Button6_apertado"]
+[connection signal="apertado" from="Painel/Button6" to="Painel/Button10" method="_on_Button6_apertado"]
+[connection signal="apertado" from="Painel/Button7" to="Painel/Button3" method="_on_Button7_apertado"]
+[connection signal="apertado" from="Painel/Button7" to="Painel/Button6" method="_on_Button7_apertado"]
+[connection signal="apertado" from="Painel/Button7" to="Painel/Button8" method="_on_Button7_apertado"]
+[connection signal="apertado" from="Painel/Button7" to="Painel/Button11" method="_on_Button7_apertado"]
+[connection signal="apertado" from="Painel/Button8" to="Painel/Button4" method="_on_Button8_apertado"]
+[connection signal="apertado" from="Painel/Button8" to="Painel/Button7" method="_on_Button8_apertado"]
+[connection signal="apertado" from="Painel/Button8" to="Painel/Button12" method="_on_Button8_apertado"]
+[connection signal="apertado" from="Painel/Button9" to="Painel/Button5" method="_on_Button9_apertado"]
+[connection signal="apertado" from="Painel/Button9" to="Painel/Button10" method="_on_Button9_apertado"]
+[connection signal="apertado" from="Painel/Button9" to="Painel/Button13" method="_on_Button9_apertado"]
+[connection signal="apertado" from="Painel/Button10" to="Painel/Button6" method="_on_Button10_apertado"]
+[connection signal="apertado" from="Painel/Button10" to="Painel/Button9" method="_on_Button10_apertado"]
+[connection signal="apertado" from="Painel/Button10" to="Painel/Button11" method="_on_Button10_apertado"]
+[connection signal="apertado" from="Painel/Button10" to="Painel/Button14" method="_on_Button10_apertado"]
+[connection signal="apertado" from="Painel/Button11" to="Painel/Button7" method="_on_Button11_apertado"]
+[connection signal="apertado" from="Painel/Button11" to="Painel/Button10" method="_on_Button11_apertado"]
+[connection signal="apertado" from="Painel/Button11" to="Painel/Button12" method="_on_Button11_apertado"]
+[connection signal="apertado" from="Painel/Button11" to="Painel/Button15" method="_on_Button11_apertado"]
+[connection signal="apertado" from="Painel/Button12" to="Painel/Button8" method="_on_Button12_apertado"]
+[connection signal="apertado" from="Painel/Button12" to="Painel/Button11" method="_on_Button12_apertado"]
+[connection signal="apertado" from="Painel/Button12" to="Painel/Button16" method="_on_Button12_apertado"]
+[connection signal="apertado" from="Painel/Button13" to="Painel/Button9" method="_on_Button13_apertado"]
+[connection signal="apertado" from="Painel/Button13" to="Painel/Button14" method="_on_Button13_apertado"]
+[connection signal="apertado" from="Painel/Button14" to="Painel/Button10" method="_on_Button14_apertado"]
+[connection signal="apertado" from="Painel/Button14" to="Painel/Button13" method="_on_Button14_apertado"]
+[connection signal="apertado" from="Painel/Button14" to="Painel/Button15" method="_on_Button14_apertado"]
+[connection signal="apertado" from="Painel/Button15" to="Painel/Button11" method="_on_Button15_apertado"]
+[connection signal="apertado" from="Painel/Button15" to="Painel/Button14" method="_on_Button15_apertado"]
+[connection signal="apertado" from="Painel/Button15" to="Painel/Button16" method="_on_Button15_apertado"]
+[connection signal="apertado" from="Painel/Button16" to="Painel/Button12" method="_on_Button16_apertado"]
+[connection signal="apertado" from="Painel/Button16" to="Painel/Button15" method="_on_Button16_apertado"]

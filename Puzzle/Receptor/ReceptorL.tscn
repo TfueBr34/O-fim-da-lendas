@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Puzzle/Receptor/Receptor.gd" type="Script" id=1]
+[ext_resource path="res://World/light.png" type="Texture" id=2]
+[ext_resource path="res://Puzzle/Receptor/ReceptorLeft.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 8.0
+height = 0.0
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 22, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 24, 22, 24 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ) ],
+"loop": false,
+"name": "New Anim",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 0.5, 2 )
+
+[node name="Receptor1" type="StaticBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 4 )
+z_index = 1
+shape = SubResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 4 )
+frames = SubResource( 7 )
+animation = "New Anim"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ativador" type="Area2D" parent="." groups=["Receptor"]]
+position = Vector2( 0, -3 )
+collision_layer = 12
+collision_mask = 12
+
+[node name="Ativador" type="CollisionShape2D" parent="Ativador"]
+visible = false
+position = Vector2( -1.5, 0 )
+shape = SubResource( 8 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0, 4 )
+texture = ExtResource( 2 )
+texture_scale = 0.5
+energy = 0.6
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="area_entered" from="Ativador" to="." method="_on_Ativador_area_entered"]
+[connection signal="area_exited" from="Ativador" to="." method="_on_Ativador_area_exited"]

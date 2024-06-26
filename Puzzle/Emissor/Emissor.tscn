@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Puzzle/Emissor/EmissorRight.png" type="Texture" id=1]
+[ext_resource path="res://Puzzle/Emissor/Emissor.gd" type="Script" id=2]
+[ext_resource path="res://World/light.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 6.85714
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 23, 16, 23 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 23 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1, 1 )
+
+[node name="Emissor1" type="StaticBody2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
+scale = Vector2( 1, 0.7 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+show_behind_parent = true
+position = Vector2( 0, -1.5 )
+frames = SubResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 5, -7 )
+enabled = true
+cast_to = Vector2( 50, 0 )
+collision_mask = 4
+collide_with_areas = true
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 5, -6 )
+z_index = 2
+points = PoolVector2Array( 0, -1 )
+width = 1.0
+default_color = Color( 0.980392, 0.984314, 0.517647, 1 )
+
+[node name="Ativador" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="Ativador" type="CollisionShape2D" parent="Ativador"]
+position = Vector2( 4, -7 )
+shape = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 4 )
+texture_scale = 0.5
+energy = 0.6
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="area_entered" from="Ativador" to="." method="_on_Ativador_area_entered"]
